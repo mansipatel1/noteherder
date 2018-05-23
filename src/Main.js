@@ -57,10 +57,10 @@ class Main extends Component {
                 notes: JSON.parse(localStorage.getItem('notes'))
             })
         }
+   
     fetchData() {
-        
+
     }
-    
         componentDidMount(){
             if(!localStorage.getItem('notes')){
                 this.fetchData()
