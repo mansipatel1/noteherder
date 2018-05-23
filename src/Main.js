@@ -41,7 +41,6 @@ class Main extends Component {
       note.id = Date.now()
       notes.push(note)
     }
-
     this.setState({ notes, currentNote: note })
   }
 
@@ -52,6 +51,26 @@ class Main extends Component {
     this.setState({notes})
     this.setCurrentNote(this.blankNote())
   }
+
+  componentWillMount(){
+            localStorage.getItem('notes') && this.setState({
+                notes: JSON.parse(localStorage.getItem('notes'))
+            })
+        }
+    fetchData() {
+        
+    }
+    
+        componentDidMount(){
+            if(!localStorage.getItem('notes')){
+                this.fetchData()
+        }
+    }
+    
+    
+        componentWillUpdate(nextProps, nextState){
+            localStorage.setItem('notes', JSON.stringify(nextState.notes))
+        }
 
   render() {
     return (
