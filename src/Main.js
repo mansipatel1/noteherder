@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 
 import Sidebar from './Sidebar'
 import NoteList from './NoteList'
@@ -6,18 +6,45 @@ import NoteForm from './NoteForm'
 
 
 
-const Main = () => {
-    return (
-        <div 
-        className = "Main"
-        style= {style}
-        >
-        <Sidebar/>
-        <NoteList/>
-        <NoteForm/> 
-        </div>
-    )
+class Main extends Component {
+    constructor () {
+        super()
+        this.state = {
+            currentNote: null,
+            notes: [
+                {
+                  id: 1,
+                  title: 'JS thoughts',
+                  body: 'I just love JS so much.',
+                },
+                {
+                  id: 2,
+                  title: 'Breakfast',
+                  body: 'FOR IT!',
+                },
+              ],
+            
+        }
+    }
+
+    setCurrentNote(note) {
+        this.setState({currentNote: note})
+    }
+
+    render() {
+        return (
+            <div 
+            className = "Main"
+            style= {style}
+            >
+            <Sidebar/>
+            <NoteList notes = {this.state.notes}/>
+            <NoteForm/> 
+            </div>
+        )
+    }
 }
+
 
 const style = {
         display: 'flex',
