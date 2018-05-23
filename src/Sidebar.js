@@ -1,6 +1,5 @@
 import React from 'react'
-
-import './Sidebar.css'
+import { StyleSheet, css } from 'aphrodite'
 
 import quill from './quill.svg'
 import newIcon from './new.png'
@@ -8,31 +7,45 @@ import newHover from './new-hover.png'
 
 const Sidebar = () => {
   return (
-    <nav
-      className="Sidebar"
-    >
+    <nav className={css(styles.sidebar)}>
       <div
-        className="logo"
+        className={css(styles.logo)}
       >
         <img
           src={quill}
           alt="Noteherder"
+          className={css(styles.logoImg)}
         />
       </div>
-      <a className="new-note" href="/notes">
-        <img src={newHover} alt="New note" />
-        <img className="outline" src={newIcon} alt="New note" />
+      <a
+        href="/notes"
+        className={css(styles.newNote)}
+      >
+        <img
+          src={newHover}
+          alt="New note"
+          className={css(styles.newNoteImg)}
+        />
+        <img
+          src={newIcon}
+          alt="New note"
+          className={css(styles.newNoteImg, styles.newNoteImgHover)}
+        />
       </a>
-      <div className="SignOut">
-        <button>
-          <i className="fa fa-sign-out"></i>
+      <div
+        className={css(styles.signOut)}
+      >
+        <button className={css(styles.button)}>
+          <i
+            className={`fa fa-sign-out ${css(styles.buttonIcon)}`}
+          ></i>
         </button>
       </div>
-    </nav> 
+    </nav>
   )
 }
 
-/*const styles = {
+const styles = StyleSheet.create({
   sidebar: {
     width: '6rem',
     backgroundColor: '#f3f3f3',
@@ -50,6 +63,36 @@ const Sidebar = () => {
     width: '3rem',
     paddingLeft: '0.4rem',
   },
-}
-*/
+  newNote: {
+    marginTop: '2rem',
+    position: 'relative',
+    width: '4rem',
+  },
+  newNoteImg: {
+    position: 'absolute',
+    left: '0',
+    width: '100%',
+    transition: 'opacity 0.25s ease-in-out',
+  },
+  newNoteImgHover: {
+    ':hover': {
+      opacity: 0,
+    },
+  },
+  signOut: {
+    position: 'absolute',
+    bottom: '1rem',
+  },
+  button: {
+    backgroundColor: 'transparent',
+    border: '0',
+    color: '#008bf8',
+    cursor: 'pointer',
+    outline: 'none',
+  },
+  buttonIcon: {
+    fontSize: '2rem',
+  },
+})
+
 export default Sidebar
