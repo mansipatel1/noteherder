@@ -38,7 +38,9 @@ class Main extends Component {
             style= {style}
             >
             <Sidebar/>
-            <NoteList notes = {this.state.notes}/>
+            <NoteList notes = {this.state.notes}
+                      setCurrentNote= {this.setCurrentNote}
+            />
             <NoteForm/> 
             </div>
         )
