@@ -5,7 +5,7 @@ import quill from './quill.svg'
 import newIcon from './new.png'
 import newHover from './new-hover.png'
 
-const Sidebar = ({ resetCurrentNote }) => {
+const Sidebar = ({ resetCurrentNote, signOut}) => {
   return (
     <nav className={css(styles.sidebar)}>
       <div
