@@ -5,6 +5,7 @@ import NoteList from './NoteList'
 import NoteForm from './NoteForm'
 import base from './base'
 
+
 class Main extends Component {
   constructor() {
     super()
@@ -60,7 +61,7 @@ class Main extends Component {
           /*  localStorage.getItem('notes') && this.setState({
                 notes: JSON.parse(localStorage.getItem('notes'))
             }) */
-            base.syncState('notes', {
+            base.syncState(`notes/${this.props.uid}`, {
             context: this,
             state: 'notes',
             asArray: true,
@@ -88,9 +89,10 @@ class Main extends Component {
         className="Main"
         style={style}
       >
-        <Sidebar resetCurrentNote={this.resetCurrentNote}
-        signOut = {this.signOut}
-        />
+        <Sidebar
+        resetCurrentNote={this.resetCurrentNote}
+         signOut={this.props.signOut}
+       />
         <NoteList
           notes={this.state.notes}
           setCurrentNote={this.setCurrentNote}

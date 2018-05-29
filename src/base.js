@@ -1,6 +1,7 @@
 import firebase from 'firebase/app'
 import Rebase from 're-base'
 import 'firebase/database'
+import 'firebase/auth'
 
 
   // Initialize Firebase
@@ -11,7 +12,12 @@ import 'firebase/database'
     projectId: "noteherder-8e6b9",
     storageBucket: "noteherder-8e6b9.appspot.com",
     messagingSenderId: "674364939816"
-  };
- const app=  firebase.initializeApp(config);
+  }
+ const app=  firebase.initializeApp(config)
+
+ export const auth = firebase.auth()
+ export const googleProvider = new firebase.auth.GoogleAuthProvider();
+ export const githubProvider = new firebase.auth.GithubAuthProvider()
+
 
  export default Rebase.createClass(app.database())
