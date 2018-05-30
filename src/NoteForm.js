@@ -45,7 +45,7 @@ class NoteForm extends Component {
         <div className="form-actions">
           <button
             type="button"
-            onClick={removeNote}
+            onClick={() => removeNote(this.state.note)}
           >
             <i className="far fa-trash-alt"></i>
           </button>

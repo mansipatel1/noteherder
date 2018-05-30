@@ -57,15 +57,14 @@ class Main extends Component {
   }
 
 
-  removeNote = (note) => {
+  removeNote = (currentNote) => {
     const notes = [...this.state.notes]
-    const i = notes.findIndex(note => note.id === this.state.currentNote.id)
+    const i = notes.findIndex(note => note.id === this.currentNote.id)
     if (i > -1 ){ 
     notes.splice(i,1)
     this.setState({notes})
+    this.props.history.push('/notes')
     }
-    this.resetCurrentNote()
-    
   }
 
   componentWillMount(){
