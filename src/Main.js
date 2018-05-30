@@ -86,9 +86,9 @@ class Main extends Component {
 
   render() {
     const formProps ={
-      currentNote : this.state.currentNote,
       saveNote: this.saveNote,
       removeNote: this.removeNote,
+      notes: this.state.notes,
     }
     return (
       <div
