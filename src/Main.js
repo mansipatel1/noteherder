@@ -11,26 +11,10 @@ class Main extends Component {
   constructor() {
     super()
     this.state = {
-      currentNote: this.blankNote(),
       notes: [],
     }
   }
 
-  blankNote = () => {
-    return {
-      id: null,
-      title: '',
-      body: '',
-    }
-  }
-
-  setCurrentNote = (note) => {
-    this.setState({ currentNote: note })
-  }
-
-  resetCurrentNote = () => {
-    this.setCurrentNote(this.blankNote())
-  }
 
   saveNote = (note) => {
     let shouldRedirect = false
@@ -59,7 +43,7 @@ class Main extends Component {
 
   removeNote = (currentNote) => {
     const notes = [...this.state.notes]
-    const i = notes.findIndex(note => note.id === this.currentNote.id)
+    const i = notes.findIndex(note => note.id === currentNote.id)
     if (i > -1 ){ 
     notes.splice(i,1)
     this.setState({notes})
