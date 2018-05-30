@@ -33,19 +33,29 @@ class Main extends Component {
   }
 
   saveNote = (note) => {
+    let shouldRedirect = false
     const notes = [...this.state.notes]
 
+
     if (note.id) {
-      // existing note
+
       const i = notes.findIndex(currentNote => currentNote.id === note.id)
       notes[i] = note
     } else {
-      // new note
+      
       note.id = Date.now()
       notes.push(note)
+      shouldRedirect = true
+   
     }
-    this.setState({ notes, currentNote: note })
+    this.setState({ notes},()=> {
+        if (shouldRedirect) {
+      this.props.history.push(`/notes/${note.id}`)
+        }
+    })
+    
   }
+
 
   removeNote = (note) => {
     const notes = [...this.state.notes]
@@ -95,10 +105,7 @@ class Main extends Component {
         className="Main"
         style={style}
       >
-        <Sidebar
-        resetCurrentNote={this.resetCurrentNote}
-         signOut={this.props.signOut}
-       />
+       <Sidebar signOut={this.props.signOut} />
          <NoteList notes={this.state.notes} />
       <Switch>
           <Route
