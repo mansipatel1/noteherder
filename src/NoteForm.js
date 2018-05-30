@@ -10,6 +10,16 @@ class NoteForm extends Component {
     }
   }
 
+  componentWillReceiveProps = (newProps) => {
+    const newId = newProps.match.params.id
+    const i = newProps.notes.findIndex(currentNote => currentNote.id.toString() === newId.id.toString())
+    const note = newProps.notes[i]
+
+    if (note) {
+        this.setState({note})
+    }
+  }
+
   blankNote = () => {
     return {
       id: null,
