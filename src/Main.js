@@ -17,7 +17,15 @@ class Main extends Component {
 
 
   saveNote = (note) => {
+    const timestamp = Date.now()
     let shouldRedirect = false
+    if (!note.id){
+      note.id= timestamp
+      shouldRedirect = true
+    }
+
+    note.updatedAt= timestamp
+
     const notes = [...this.state.notes]
 
 
