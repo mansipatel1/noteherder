@@ -10,6 +10,20 @@ class NoteForm extends Component {
     }
   }
 
+  componentDidUpdate = () => {
+    const newId = this.props.match.params.id || '' 
+    const oldId = this.state.note.id || ''
+    if (newId !== oldId.toString()){
+      const i = this.props.notes.findIndex(currentNote => currentNote.id.toString() === newId.toString())
+    const note = this.props.notes[i] || this.blankNote()
+     
+    if (note.id!== this.state.note.id){
+        this.setState({note})
+    }
+   }
+  }
+
+
   componentWillReceiveProps = (newProps) => {
 
     const newId = newProps.match.params.id || ''
@@ -21,6 +35,7 @@ class NoteForm extends Component {
       this.setState({ note })
     }
   }
+
 
   blankNote = () => {
     return {
